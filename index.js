@@ -211,45 +211,33 @@ app.post('/personnages/:id/edit', async (req, res) => {
     const { characterName, teamName, characterDescription } = req.body;
 
     pool.getConnection(function (err, connection) {
-      connection.beginTransaction(function (err) {
-        if (err) {
-          console.error(err);
-          res.status(500).send("Erreur interne du serveur");
-          return;
-        }
+      if (err) {
+        console.error(err);
+        res.status(500).send("Erreur interne du serveur");
+        return;
+      }
 
-        connection.query(
-          'UPDATE personnages SET nom = ?, description = ? WHERE id = ?',
-          [characterName, characterDescription, personnageId],
-          function (error, results, fields) {
-            if (error) {
-              return connection.rollback(function () {
-                console.error(error);
-                res.status(500).send("Erreur interne du serveur");
-              });
-            }
-
-            connection.commit(function (err) {
-              if (err) {
-                return connection.rollback(function () {
-                  console.error(err);
-                  res.status(500).send("Erreur interne du serveur");
-                });
-              }
-
-              res.redirect('/personnages/' + personnageId);
-
-              connection.release();
-            });
+      connection.query(
+        'UPDATE personnages SET nom = ?, description = ? WHERE id = ?',
+        [characterName, characterDescription, personnageId],
+        function (error, results, fields) {
+          if (error) {
+            console.error(error);
+            res.status(500).send("Erreur interne du serveur");
+          } else {
+            res.redirect('/personnages/' + personnageId);
           }
-        );
-      });
+
+          connection.release();
+        }
+      );
     });
   } catch (error) {
     console.error(error);
     res.status(500).send("Erreur interne du serveur");
   }
 });
+
 
 app.get('/equipes', async (req, res) => {
   try {
@@ -294,45 +282,33 @@ app.post('/create_equipe', async (req, res) => {
     const { teamName } = req.body;
 
     pool.getConnection(function (err, connection) {
-      connection.beginTransaction(function (err) {
-        if (err) {
-          console.error(err);
-          res.status(500).send("Erreur interne du serveur");
-          return;
-        }
+      if (err) {
+        console.error(err);
+        res.status(500).send("Erreur interne du serveur");
+        return;
+      }
 
-        connection.query(
-          'INSERT INTO equipes (nom) VALUES (?)',
-          [teamName],
-          function (error, results, fields) {
-            if (error) {
-              return connection.rollback(function () {
-                console.error(error);
-                res.status(500).send("Erreur interne du serveur");
-              });
-            }
-
-            connection.commit(function (err) {
-              if (err) {
-                return connection.rollback(function () {
-                  console.error(err);
-                  res.status(500).send("Erreur interne du serveur");
-                });
-              }
-
-              res.redirect('/equipes');
-
-              connection.release();
-            });
+      connection.query(
+        'INSERT INTO equipes (nom) VALUES (?)',
+        [teamName],
+        function (error, results, fields) {
+          if (error) {
+            console.error(error);
+            res.status(500).send("Erreur interne du serveur");
+          } else {
+            res.redirect('/equipes');
           }
-        );
-      });
+
+          connection.release();
+        }
+      );
     });
   } catch (error) {
     console.error(error);
     res.status(500).send("Erreur interne du serveur");
   }
 });
+
 
 
 app.get('/assignation', async (req, res) => {
