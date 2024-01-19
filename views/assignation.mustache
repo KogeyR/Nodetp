@@ -10,23 +10,24 @@
 <body>
   <div class="container">
     <h1>{{pageTitle}}</h1>
-    <form action="/assignation_team" method="post" class="form">
-      <label for="characterName">Nom du personnage:</label>
-      <select id="characterName" name="characterName" required>
-        {{#personnages}}
-          <option value="{{id}}">{{nom}}</option>
-        {{/personnages}}
-      </select>
+    <form action="/assignation_equipe" method="post" class="form">
+  <label for="characterId">Nom du personnage:</label>
+  <select id="characterId" name="personnageId" required>
+    {{#personnages}}
+      <option value="{{id}}">{{nom}}</option>
+    {{/personnages}}
+  </select>
 
-      <label for="teamName">Nom de l'équipe:</label>
-      <select id="teamName" name="teamName" required>
-        {{#equipes}}
-          <option value="{{id}}">{{nom}}</option>
-        {{/equipes}}
-      </select>
+  <label for="teamId">Nom de l'équipe:</label>
+  <select id="teamId" name="equipeId" required>
+    {{#equipes}}
+      <option value="{{id}}">{{nom}}</option>
+    {{/equipes}}
+  </select>
 
-      <button type="submit" class="btn">Assigner</button>
-    </form>
+  <button type="submit" class="btn">Assigner</button>
+</form>
+
 
     <h2>Liste des personnages</h2>
     <ul>
