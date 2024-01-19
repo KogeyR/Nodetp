@@ -4,26 +4,40 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
   <title>{{pageTitle}}</title>
-  
 </head>
 <body>
+<header>
 
-    <h1>{{pageTitle}}</h1>
- 
-    <div>
-      
-      <img src="{{personnages.photo}}" alt="">
-      <h2>{{personnages.nom}}</h2>
-      <li>{{personnages.description}}</li>
-      <p>Team: {{personnnages_equipe.nom}}</p>
-      
-    </div>
+<nav>
+  <ul>
+    <li><strong>Marvel</strong></li>
+  </ul>
+  <ul>
+    <li><a href="/create">Créer un personnage</a></li>
+    <li><a href="/assignation">Gérer équipes</a></li>
+    
+  </ul>
+</nav>
 
+</header>
 
+  <h1>{{pageTitle}}</h1>
+  <article>
+    {{#personnages}}
+      <div>
+        <img src="{{photo}}" alt="">
+        <h2>{{nom}}</h2>
+        <p>Description: {{description}}</p>
+        <p>Team: {{equipe_nom}}</p>
+        <a href="/personnages/{{id}}/delete" role="button" class="contrast">Supprimer</a>
+        <a href="/personnages/{{id}}/edit" role="button" class="secondary">Modifier</a>
+      </div>
+    {{/personnages}}
+  </article>
 
-<script type="text/javascript" src="../index.js"</script>  
-<script type="text/javascript" src="../database.js"</script>  
-
+  <script type="text/javascript" src="../index.js"></script>  
+  <script type="text/javascript" src="../database.js"></script>  
 </body>
 </html>

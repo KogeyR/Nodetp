@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+  <title>{{pageTitle}}</title>
+</head>
+<body>
+  <div class="container">
+    <h1>{{pageTitle}}</h1>
+    <form action="/assignation_team" method="post" class="form">
+      <label for="characterName">Nom du personnage:</label>
+      <select id="characterName" name="characterName" required>
+        {{#personnages}}
+          <option value="{{id}}">{{nom}}</option>
+        {{/personnages}}
+      </select>
+
+      <label for="teamName">Nom de l'équipe:</label>
+      <select id="teamName" name="teamName" required>
+        {{#equipes}}
+          <option value="{{id}}">{{nom}}</option>
+        {{/equipes}}
+      </select>
+
+      <button type="submit" class="btn">Assigner</button>
+    </form>
+
+    <h2>Liste des personnages</h2>
+    <ul>
+      {{#personnages}}
+        <li>{{nom}}</li>
+      {{/personnages}}
+    </ul>
+
+    <h2>Liste des équipes</h2>
+    <ul>
+      {{#equipes}}
+        <li>{{nom}}</li>
+      {{/equipes}}
+    </ul>
+  </div>
+
+  <script type="text/javascript" src="../index.js"></script>  
+  <script type="text/javascript" src="../database.js"></script>  
+</body>
+</html>

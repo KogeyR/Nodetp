@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+  <title>{{pageTitle}}</title>
+</head>
+<body>
+  <h1>{{pageTitle}}</h1>
+  
+  <form action="/personnages/{{personnage.id}}/edit" method="post">
+    <label for="characterName">Nom du personnage:</label>
+    <input type="text" id="characterName" name="characterName" value="{{personnage.nom}}" required>
+
+      <label for="teamName">Nom de l'équipe:</label>
+    <input type="text" id="teamName" name="teamName" value="{{personnage.equipe_nom}}" required>
+
+    <label for="characterDescription">Description du personnage:</label>
+    <textarea id="characterDescription" name="characterDescription" required>{{personnage.description}}</textarea>
+
+    <button type="submit">Enregistrer les modifications</button>
+  </form>
+
+  <script type="text/javascript" src="../index.js"></script>  
+  <script type="text/javascript" src="../database.js"></script>  
+</body>
+</html>
